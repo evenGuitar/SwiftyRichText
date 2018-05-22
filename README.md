@@ -25,7 +25,7 @@ let attrText = "决斗当日".addAttributes([.font(.systemFont(ofSize: 28)), .co
 .add("两人都做好了战斗至死的准备。".addAttribute(.strikethrough(.styleSingle)))
 .add("幸运的是，".addAttributes([.color(.white), .font(.systemFont(ofSize: 12)), .backColor(.black)]))
 .add("在".addAttribute())
-.add("千钧一发".addAttributes([Attribute.underline(.styleSingle), .font(.systemFont(ofSize: 28))]))
+.add("千钧一发".addAttributes([.underline(.styleSingle), .font(.systemFont(ofSize: 28))]))
 .add("之际，".addAttribute(.font(.systemFont(ofSize: 13))))
 .add("两个人的支持者及时赶到，".addAttribute())
 .add("阻止了悲剧的发生。".addAttributes([.font(.systemFont(ofSize: 17)), .color(.brown), .backColor(.green)]))
