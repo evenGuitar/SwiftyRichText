@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name          = "HjzAttributedString"	# 仓库名
-    s.version       = "0.0.1" # 版本号
+    s.version       = "0.0.2" # 版本号
     s.summary       = "适用于 Swift 的轮播图库。" # 概要
     s.homepage      = "https://github.com/HjzCy/HjzAttributedString" # 仓库主页
     s.license       = { :type => "MIT", :file => "LICENSE" }	# 许可证
