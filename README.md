@@ -14,7 +14,7 @@
 
 ......待继续添加。
 
-![](https://github.com/HjzCy/HjzAttributedString/blob/master/Screenshots/screen_shot.png)
+![](https://github.com/HjzCy/HjzAttributedString/blob/master/Screenshots/screen_shot.png.png)
 
 ## 使用
 
