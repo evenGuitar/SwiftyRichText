@@ -18,7 +18,7 @@ public extension String {
         return NSMutableAttributedString(string: self, attributes: attributes)
     }
     
-    /// 添加单个属性，如果不传属性值，则返回默认的属性字符串。
+    /// 添加单个属性
     func addAttribute(_ attr: Attribute? = nil) -> NSMutableAttributedString {
         guard let attr = attr else {
             return NSMutableAttributedString(string: self)
