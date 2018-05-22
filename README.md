@@ -1,6 +1,8 @@
 # HjzAttributedString
 
-一个适用于 Swift 的富文本处理库。目前支持：
+一个适用于 Swift 的富文本处理库。
+
+目前支持定义的属性列表：
 
 - UIFont
 - 前景颜色
@@ -9,6 +11,8 @@
 - 删除线
 - HTML加载
 - 段落样式 (`NSMutableParagraphStyle`)
+
+......待继续添加。
 
 ![](https://github.com/HjzCy/HjzAttributedString/blob/master/Screenshots/screen_shot.png)
 
