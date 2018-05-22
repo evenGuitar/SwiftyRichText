@@ -12,6 +12,7 @@ extension NSMutableAttributedString {
     
     /// 添加属性字符串
     /// 如果传入的属性字符串没有 .font 属性，则同步上一个的 font
+    @discardableResult
     public func add(_ attString: NSMutableAttributedString) -> NSMutableAttributedString {
         // 传入的属性字符串没有设置 .font 属性
         if !attString.filter { $0.attrs.contains { $0.key == .font } } {
