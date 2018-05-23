@@ -1,6 +1,6 @@
-# HjzAttributedString
+# SwiftyRichText
 
-一个适用于 Swift 的富文本处理库。
+一个适用于 Swift 的富文本 (`NSAttributedString`) 处理库。
 
 目前支持定义的属性列表：
 
@@ -14,30 +14,53 @@
 
 ......待继续添加。
 
-![](https://github.com/HjzCy/HjzAttributedString/blob/master/Screenshots/screen_shot.png.png)
+![](https://github.com/HjzCy/SwiftyRichText/blob/master/Screenshots/screen_shot.png.png)
+
+## 安装
+
+```ruby
+pod 'SwiftyRichText'
+```
 
 ## 使用
 
+如需多行显示，先设置 `label` 的 `numberOfLines` 属性。
+
 ```swift
+// 基本使用
 let attrText = "决斗当日".addAttributes([.font(.systemFont(ofSize: 28)), .color(.blue)])
 .add("谢尔兹和林肯按照约定来到密西西比河畔，".addAttribute(.font(.systemFont(ofSize: 17))))
-.add("在按上对峙。".addAttribute(.backColor(.red)))
-.add("两人都做好了战斗至死的准备。".addAttribute(.strikethrough(.styleSingle)))
-.add("幸运的是，".addAttributes([.color(.white), .font(.systemFont(ofSize: 12)), .backColor(.black)]))
-.add("在".addAttribute())
-.add("千钧一发".addAttributes([.underline(.styleSingle), .font(.systemFont(ofSize: 28))]))
-.add("之际，".addAttribute(.font(.systemFont(ofSize: 13))))
-.add("两个人的支持者及时赶到，".addAttribute())
-.add("阻止了悲剧的发生。".addAttributes([.font(.systemFont(ofSize: 17)), .color(.brown), .backColor(.green)]))
-
-attrText.add("\n\n这是林肯一生中最惨痛的教训，".addAttributes([.font(.systemFont(ofSize: 15)), .underlineWithColor(.styleThick, .orange)]))
-.add("他也因此学到了为人处世最高贵的一课。从那之后，他再也没写过侮辱人的字眼，也不再出言讥讽。确切的说，在那之后，他几乎从未批评过任何人任何事。".addAttribute(.underlineWithColor(.styleThick, .orange)))
-
-let label = UILabel(frame: CGRect(x: 11, y: 88, width: UIScreen.width - 22, height: 44))
-label.numberOfLines = 0
+.add("在岸上对峙。".addAttribute(.backColor(.red)))
 label.attributedText = attrText
-label.sizeToFit()
-view.addSubview(label)
+
+// 设置段落样式
+let attrStr = "0.00\n账号余额".addAttribute(Attribute.paragraph({ (style) in
+    style.lineSpacing = 8
+    style.alignment = .center
+}))
+label.attributedText = attrStr
+```
+
+### 加载HTML
+
+```swift
+let str = """
+          <p>请在输入框内贴入你需要转换的HTML代码</p>
+          <p>HTML转换工具，可以将HTML代码转换为JavaScript字符串</p>
+          <p>直接将你所要用程序输出的大串HTML代码贴到输入框中，即可一键生成</p>
+          <p>如果您觉得好用，别忘了推荐给朋友！</p>
+         """
+// toHTML 返回的是可变的属性字符串，可继续自定义操作，
+// 例如添加 replace(at:with:) 替换属性: 把字号改成14。
+label.attributedText = str.toHTML?.replace(at: 0, with: .font(.systemFont(ofSize: 14)))
+```
+
+### 下标
+
+```swift
+let attrStr = "属性字符串".addAttribute()
+              .add("下标演示".addAttribute(.color(.red)))
+attrStr[0]  // "属性字符串" 所在范围的 NSAttributedString
 ```
 
 ## APIs
@@ -50,6 +73,8 @@ public extension String {
     func addAttributes(_ attrs: [Attribute]) -> NSMutableAttributedString
     /// 添加单个属性
     func addAttribute(_ attr: Attribute? = nil) -> NSMutableAttributedString
+    /// 转换成HTML格式的属性字符串
+	var toHTML: NSMutableAttributedString?
 }
 ```
 
@@ -60,7 +85,7 @@ extension NSMutableAttributedString {
     
     /// 添加属性字符串
     /// 如果传入的属性字符串没有 .font 属性，则同步上一个的 font
-    public func add(_ attString: NSMutableAttributedString) -> NSMutableAttributedString
+    public func add(_ attString: NSAttributedString) -> NSMutableAttributedString
     
     /// 替换指定索引的属性字符串
     @discardableResult
@@ -82,6 +107,25 @@ extension NSMutableAttributedString {
 }
 ```
 
+### NSAttributedString
+
+```swift
+extension NSAttributedString {
+    
+    /// 获取指定索引的属性字符串范围
+    func range(at index: Int) -> NSRange
+    
+    /// 遍历
+    public func forEach(body: (Int, [NSAttributedStringKey: Any], NSRange, UnsafeMutablePointer<ObjCBool>) -> Void)
+    
+    /// 筛选一个条件，返回这个条件的 bool。
+    public func filter(isIncluded: ((index: Int, attrs: [NSAttributedStringKey: Any], range: NSRange)) -> Bool) -> Bool
+    
+    /// 返回指定下标的属性字符串
+    public subscript(index: Int) -> NSAttributedString
+}
+```
+
 ## 最后
 
-如果您在使用中有任何问题或建议恳请及时提出，感谢使用！
+如果您在使用中有任何问题或宝贵的建议恳请及时提出，感谢使用！
