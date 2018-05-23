@@ -14,7 +14,7 @@
 
 ......待继续添加。
 
-![](https://github.com/HjzCy/SwiftyRichText/blob/master/Screenshots/screen_shot.png.png)
+![](https://github.com/HjzCy/SwiftyRichText/blob/master/Screenshots/screen_shot.png)
 
 ## 安装
 
