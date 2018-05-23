@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
     s.license       = { :type => "MIT", :file => "LICENSE" }	# 许可证
     s.author        = { "HjzCy" => "780810441@qq.com" }	# 作者
     s.platform      = :ios, "9.0"	# 支持的软件平台
-    s.swift_version = "4.0"
+    # s.swift_version = "4.0"
     # 仓库源
     s.source        = { :git => "https://github.com/HjzCy/SwiftyRichText.git", :tag => "v#{s.version}" }
     # 源文件所在路径，跟 .podspec 平级.
